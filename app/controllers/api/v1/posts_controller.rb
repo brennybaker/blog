@@ -35,17 +35,21 @@ class Api::V1::PostsController < ApplicationController
 
   # DELETE /posts/1
   def destroy
-    @post.destroy!
+    @post.destroy
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Post not found' }, status: :not_found
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end
