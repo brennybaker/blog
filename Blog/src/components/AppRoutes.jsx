@@ -3,13 +3,14 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PostsList from './PostsList';
 import PostDetails from './PostDetails';
+import NewPostForm from './NewPostForm';
 
 function AppRoutes() {
   return (
     <Routes>
       <Route exact path="/" element={<PostsList />} />
       <Route exact path="/posts/:id" element={<PostDetails />} />
-      <Route exact path="/new" element={<h1>New Post</h1>} />
+      <Route exact path="/new" element={<NewPostForm />} />
     </Routes>
   );
 }
