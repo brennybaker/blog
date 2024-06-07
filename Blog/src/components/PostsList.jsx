@@ -64,12 +64,14 @@ function PostsList() {
             {posts.map((post) => (
                 <div key={post.id} className="post-container">
                     <h2>
+                            
                         <Link to={`/posts/${post.id}`} className="post-title">
                             {post.title}
                         </Link>
                     </h2>
                     <div className="post-links">
-                        {/* <button onClick={() => editPost(post.id)}>Edit</button> */}
+                        <Link to={`/posts/${post.id}/edit`}>Edit</Link>
+                        {" | "} 
                         <button onClick={() => handleDelete(post.id)}>Delete</button>
                     </div>
                 </div>
